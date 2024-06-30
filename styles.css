@@ -1,0 +1,329 @@
+/* SELECTION DES COULEURS UTILISEES DANS LE PROJET */
+:root {
+  --main-bg-color: #d8efd3;
+  --secondary-bg-color: #95d2b3;
+  --accent-color: #55ad9b;
+  --light-bg-color: #f1f8e8;
+  --highlight-color: #add899;
+  --button-bg-color: #f1f8e8;
+  --button-text-color: #000;
+  --modal-bg-color: rgba(0, 0, 0, 0.5);
+  --text-color-day: #0009;
+  --text-color-night: #ffffff;
+}
+
+/* ------------------------------------------------- */
+/* CSS POUR LE STYLE GENERIQUE DES ELEMENTS DU HTML */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(to bottom,
+      var(--main-bg-color),
+      var(--secondary-bg-color));
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  transition: background-color 2s, color 2s;
+  color: var(--text-color-day);
+}
+
+button {
+  width: 22.5rem;
+  height: 3.75rem;
+  border-radius: 1rem;
+  background-color: var(--button-bg-color);
+  border: none;
+  color: var(--button-text-color);
+  font-size: 1.25rem;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+  background-color: var(--highlight-color);
+  color: white;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  /* 600 ou 300 */
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+header button {
+  margin: 2rem;
+}
+
+input,
+select {
+  color: #333;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 5px;
+  outline: none;
+}
+
+footer {
+  margin-bottom: 2rem;
+}
+
+/* ------------------------------------------------- */
+/* CSS POUR LA FENETRE MODAL */
+.modal {
+  display: none;
+  /* Initialement cachée */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  border: 2px solid #55ad9b;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  background: var(--modal-bg-color);
+}
+
+.modal-content {
+  background-color: var(--main-bg-color);
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+  background-color: #d8efd3;
+  border: 2px solid #55ad9b;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------- */
+/* CSS POUR LE SWITCH DAY MODE TO NIGHT MODE */
+body.day-mode {
+  background: linear-gradient(to bottom,
+      var(--main-bg-color),
+      var(--secondary-bg-color));
+  color: var(--text-color-day);
+}
+
+body.day-mode button {
+  background-color: var(--accent-color);
+  color: var(--text-color-day);
+}
+
+body.night-mode button {
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+}
+
+body.night-mode {
+  background: linear-gradient(180deg, #0a0a23, #14142e, #1e1e38, #282843, #000000);
+  color: var(--text-color-night);
+}
+
+.toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.mode-switch {
+  display: none;
+}
+
+.mode-label {
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  background-color: #ccc;
+  border-radius: 34px;
+  position: relative;
+  cursor: pointer;
+}
+
+.mode-label::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 28px;
+  height: 28px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.mode-switch:checked+.mode-label::after {
+  transform: translateX(26px);
+}
+
+.mode-off {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1;
+  right: 10px;
+}
+
+.mode-on {
+  left: 10px;
+}
+
+.mode-icon {
+  width: 24px;
+  height: 24px;
+}
+
+#icon-sun {
+  margin-left: 2rem;
+  margin-top: 0.3rem;
+}
+
+#icon-moon {
+  margin-right: 0.7rem;
+}
+
+/* ------------------------------------------------- */
+/* CSS POUR LE COUNTENEUR, LA VIDEO ET DES BTNS EN DESSOUS */
+.flex-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+#flex-wrap-video {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btns {
+  display: block;
+  margin-top: 1rem;
+}
+
+video,
+#canvasVideo {
+  width: 100%;
+  max-width: 600px;
+  border: 2px solid var(--accent-color);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ------------------------------------------------- */
+/* CSS POUR L'INPUT PERMETTANT DE CHOISIR LA WEBCAM A UTILISER ET LA LISTE DE FILTRE */
+#results {
+  margin-top: 1rem;
+}
+
+.grid-container-objClass {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+}
+
+/* ------------------------------------------------- */
+/* CSS POUR LE CANVAS ET L'AFFICHAGE DES PREDICTIONS ET RESULTATS */
+#canvasVideo {
+  margin-right: 2rem;
+  margin-left: 2rem;
+}
+
+#images {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+#resultats-affichage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* ------------------------------------------------- */
+/* CSS POUR L'AFFICHAGE DES CPATURES D'ECRAN DU FILTRAGE D'OBJETS */
+.grid-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 6rem;
+  margin: 0 auto;
+  max-width: 1300px;
+  margin-bottom: 3rem;
+}
+
+.capture-card img {
+  width: auto;
+  height: 100%;
+  border: 5px solid var(--main-bg-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#titre-filtrage {
+  display: none;
+}
+
+/* ------------------------------------------------- */
+/* CSS POUR L'AFFICHAGE DES CAPTURES D'ECRAN SANS LE FILTRAGE */
+.grid-container-imgs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 6rem;
+  margin: 0 auto;
+  max-width: 1300px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.grid-container-imgs img {
+  border: 5px solid var(--main-bg-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+#titre-captures {
+  display: none;
+}

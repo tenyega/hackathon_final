@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webcam-Detection</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header id="header">
+      <h1>HACKATHON</h1>
+      <div class="toggle-container">
+        <input type="checkbox" id="mode-switch" class="mode-switch" />
+        <label for="mode-switch" class="mode-label">
+          <span class="mode-on">
+            <img
+              src="images/sun.png"
+              alt="Sun"
+              class="mode-icon"
+              id="icon-sun"
+            />
+          </span>
+          <span class="mode-off">
+            <img
+              src="images/moon.png"
+              alt="Moon"
+              class="mode-icon"
+              id="icon-moon"
+            />
+          </span>
+        </label>
+      </div>
+    </header>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <h1>Entrez votre adresse e-mail</h1>
+        <input
+          type="email"
+          id="emailInput"
+          placeholder="Entrez votre e-mail"
+          required
+        />
+        <br /><br />
+        <button id="submit-email">Recevoir un email</button>
+        <br /><br />
+        <button id="submit-email-cancel">Annuler</button>
+      </div>
+    </div>
+
+    <div class="flex-wrap">
+      <div id="flex-wrap-video">
+        <span id="resultats-affichage">
+          <h2>Objets reconnus :</h2>
+          <div id="predictions"></div>
+        </span>
+        <canvas id="canvasVideo"></canvas>
+        <video id="video" autoplay playsinline></video>
+      </div>
+      <h2>Choix de la webcam :</h2>
+      <div id="results"></div>
+      <div class="btns">
+        <button id="startButton">Start Camera</button>
+        <button id="capture">Capture Écran</button>
+      </div>
+      <h2>
+        Filtrage des captures d'écrans, cocher les items qui vous intéressent :
+      </h2>
+      <div id="objClass" class="grid-container-objClass"></div>
+      <h3 class="hidden" id="titre-filtrage">Résultat de votre filtrage :</h3>
+      <div id="filterResult" class="grid-wrap"></div>
+    </div>
+  
+    <h3 id="titre-captures" class="hidden">Liste des captures d'écran :</h3>
+    <canvas id="images"></canvas>
+    <div id="predictionsImage"></div>
+    <!--Léa:  List capture ecran -->
+    
+    <div id="captured-container">
+      <div id="captured-images" class="grid-container-imgs"></div>
+    </div>
+
+    <footer id="footer">
+      <button id="btn-modal">Recevoir un mail</button>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
